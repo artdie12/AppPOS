@@ -15,11 +15,42 @@
         <div class="box-header with-border">
           <h3 class="box-title">List Kategori</h3>
           <hr>
-          <button class="btn btn-success xs btn-flat"><i class="fa fa-plus-circel">+</i></button>
+          <button onclick="addform()" class="btn btn-success xs btn-flat"><i class="fa fa-plus-circel">+</i></button>
         </div>
-        <div class="box body tablr-responsive"></div>
+        <div class="box body tablr-responsive">
+          <table class="table table-stiped table-bordered">
+            <thead>
+              <th style="width: 5%">No</th>
+              <th >Kategori</th>
+              <th style="width: 15%"><i class="fa fa-cog"></i></th>
+            </thead>
+            <body>
+              
+            </body>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-
+@includeIf('kategori.form')
 @endsection
+@push('script')
+    <script>
+      let table;
+      $(function(){
+        table=$('.table').DataTable({
+          processing: true;
+          autoWidth: false;
+          // ajax:{
+          //   url: '{{route('kategori.data')}}'
+          // }
+      });
+    });
+
+    function addform(){
+      $('#modalform').modal('show');
+      $('#modalform .modaltitle').text('Tambah Kategori');
+
+    }
+    </script>
+@endpush
